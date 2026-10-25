@@ -21,7 +21,11 @@ android {
         applicationId = "com.spritzlive.speedometer"
         minSdk = 26
         targetSdk = 35
-        versionCode = 6
+        // versionCode tracks versionName directly from here on: drop the dot and read
+        // the digits (1.4 -> 14, 1.10 -> 110, 2.0 -> 20). Bump both together on every
+        // release so SpritzStore's "installed -> latest" display never shows two
+        // different builds under the same version string again.
+        versionCode = 14
         versionName = "1.4"
         vectorDrawables { useSupportLibrary = true }
     }
