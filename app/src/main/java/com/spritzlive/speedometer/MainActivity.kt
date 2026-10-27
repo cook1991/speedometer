@@ -26,8 +26,6 @@ import com.spritzlive.speedometer.ui.PermissionScreen
 import com.spritzlive.speedometer.ui.SpeedScreen
 import com.spritzlive.speedometer.ui.SpeedometerTheme
 
-private const val SUPPORT_URL = "https://buymeacoffee.com/spritzjason"
-
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,13 +82,6 @@ private fun SpeedometerApp() {
             state = state,
             onToggleUnit = vm::toggleUnit,
             onReset = vm::resetStats,
-            onSupport = {
-                // Opens in the user's browser. No INTERNET permission required —
-                // the browser handles the network, the app just fires the intent.
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(SUPPORT_URL))
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                runCatching { context.startActivity(intent) }
-            },
         )
     } else {
         PermissionScreen(

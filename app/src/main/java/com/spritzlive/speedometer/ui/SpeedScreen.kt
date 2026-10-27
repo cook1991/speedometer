@@ -36,14 +36,13 @@ fun SpeedScreen(
     state: SpeedUiState,
     onToggleUnit: () -> Unit,
     onReset: () -> Unit,
-    onSupport: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val landscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
     if (landscape) {
-        LandscapeLayout(state, onToggleUnit, onReset, onSupport, modifier)
+        LandscapeLayout(state, onToggleUnit, onReset, modifier)
     } else {
-        PortraitLayout(state, onToggleUnit, onReset, onSupport, modifier)
+        PortraitLayout(state, onToggleUnit, onReset, modifier)
     }
 }
 
@@ -52,7 +51,6 @@ private fun PortraitLayout(
     state: SpeedUiState,
     onToggleUnit: () -> Unit,
     onReset: () -> Unit,
-    onSupport: () -> Unit,
     modifier: Modifier,
 ) {
     Column(
@@ -66,7 +64,6 @@ private fun PortraitLayout(
         SpeedReadout(state, modifier = Modifier.fillMaxWidth())
         StatsRow(state)
         Controls(state, onToggleUnit, onReset)
-        SupportLink(onSupport)
     }
 }
 
@@ -75,7 +72,6 @@ private fun LandscapeLayout(
     state: SpeedUiState,
     onToggleUnit: () -> Unit,
     onReset: () -> Unit,
-    onSupport: () -> Unit,
     modifier: Modifier,
 ) {
     Row(
@@ -100,7 +96,6 @@ private fun LandscapeLayout(
             StatusLine(state)
             StatsRow(state)
             Controls(state, onToggleUnit, onReset)
-            SupportLink(onSupport)
         }
     }
 }
@@ -161,19 +156,6 @@ private fun Controls(
             Spacer(Modifier.width(6.dp))
             Text("Reset")
         }
-    }
-}
-
-@Composable
-private fun SupportLink(onSupport: () -> Unit) {
-    // Optional, unobtrusive tip link. Opens the browser via an external
-    // intent, so the app itself needs no INTERNET permission.
-    TextButton(onClick = onSupport) {
-        Text(
-            "☕  Buy me a coffee",
-            fontSize = 14.sp,
-            color = Color(0xFF8899AA),
-        )
     }
 }
 
